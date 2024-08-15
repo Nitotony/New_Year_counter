@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Counter</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .title h1 {
+            font-size:50px;
+            margin: 0;
+            
+        }
+
+        .clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        .clock span {
+            margin: 10px 10px;
+        }
+
+
+        .Days, .Hours, .Minutes, .Seconds {
+            font-weight: bold;
+            color: #ffeb3b;
+           
+        }
+
+    
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title">
+            <h1>New Year is in:</h1>
+        </div>
+
+        <div class="clock">
+            <span class="Days">000</span>
+            <span>Days</span>
+            <span class="Hours">00</span>
+            <span>Hours</span>
+            <span class="Minutes">00</span>
+            <span>Minutes</span>
+            <span class="Seconds">00</span>
+            <span>Seconds</span>
+        </div>
+    </div>
+    <script>
+        const countdown = () => {
+            const Days = document.getElementsByClassName("Days")[0];
+            const Hours = document.getElementsByClassName("Hours")[0];
+            const Minutes = document.getElementsByClassName("Minutes")[0];
+            const Seconds = document.getElementsByClassName("Seconds")[0];
+
+            const Currentdate = new Date();
+            const NewYear = new Date(`January 1, ${Currentdate.getFullYear() + 1} 00:00:00`);
+
+            const diff = NewYear - Currentdate;
+
+            const days = Math.floor(diff / (1000* 60 *60 * 24));
+
+            const hours = Math.floor((diff % (1000*60* 60 * 24)) / (1000*60*60));
+
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            Days.innerHTML = days;
+            Hours.innerHTML = hours;
+            Minutes.innerHTML = minutes;
+            Seconds.innerHTML = seconds;
+        }
+
+        setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
